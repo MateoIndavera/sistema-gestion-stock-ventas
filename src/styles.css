@@ -1,0 +1,282 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  height: 100vh;
+  background-color: #FAF7F2;
+  color: #1F1B16;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+header{
+  height: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+nav{
+  width: 100%;
+  background-color: #134269;
+  color: white;
+  border: 1px solid black;
+}
+
+nav img {
+  width: 35px;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  max-height: 35px;
+  padding: 0px 3px;
+  gap: 15px;
+  margin: 5px 0;
+}
+
+nav li {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 5px;
+  height: 23px;
+  width: auto;
+  list-style-type: none;
+  font-weight: 800;
+  transition: 100ms ease-in;
+  cursor: pointer;
+  justify-content: center;
+}
+
+nav li:hover {
+  background-color: rgba(73, 96, 136, 0.74);
+  border-radius: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  width: 100%;
+  flex: 3;
+}
+
+.carrito {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 75vh;
+  border: 1px solid #222;
+}
+
+.carritoColumnas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  height: auto;
+}
+
+.carritoColumnas ul {
+  list-style-type: none;
+  display: flex;
+  align-items: end;
+  min-height: 40px;
+  height: auto;
+  width: 99%;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+  border-bottom: 1px solid black;
+}
+
+.carritoColumnas li {
+  min-height: 20px;
+  height: auto;
+  font-size: 14px;
+  font-weight: 800;
+  padding-left: 2px;
+  margin-bottom: 3px;
+}
+
+
+.detallesCarrito {
+  padding: 2px 5px ;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 5px;
+  overflow-y: auto;
+}
+
+
+hr {
+  width: 100%;
+  margin: 2px 0;
+  height: 2px;
+  background-color: black;
+}
+
+.filaProducto{
+  display: flex;
+  gap: 10px;
+  height: 35px;
+  min-height: 35px;
+  margin: 5px 0;
+
+}
+.carritoColumnas ul li:nth-child(1){
+  width: 2%;
+}
+
+.filaProducto input:nth-child(1) {
+  text-align: center;
+  width: 2%;
+}
+.filaProducto input:nth-child(2), .carritoColumnas ul li:nth-child(2) {
+  width: 10%;
+}
+
+.filaProducto input:nth-child(3), .carritoColumnas ul li:nth-child(3) {
+  width: 30%;
+}
+
+.filaProducto input:nth-child(4),
+.carritoColumnas ul li:nth-child(4){
+  min-width: 50px;
+  width: 9%;
+  margin-right: 7%;
+}
+
+.filaProducto input:nth-child(5),
+.carritoColumnas ul li:nth-child(5){
+  width: 9%;
+}
+
+.filaProducto input:nth-child(6),
+.carritoColumnas ul li:nth-child(6){
+  width: 10%;
+}
+
+.filaProducto input:nth-child(7),
+.carritoColumnas ul li:nth-child(7){
+  width: 7%;
+}
+
+.filaProducto input:nth-child(8),
+.carritoColumnas ul li:nth-child(8){
+  width: 11%;
+}
+
+.cantidad{
+  display: flex;
+  width: 11%;
+  margin-right: 5%;
+}
+
+.cantidad input {
+  flex: 5;
+  margin: 0;
+}
+
+.btnsCantidad{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+  margin-left: 3px;
+  gap: 3px;
+}
+
+
+.btnsCantidad button {
+  border-radius: 10px;
+  height: 25px;
+  width: 20px;
+}
+
+.finCarrito {
+  background-color: #16578b;
+  color: white;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-top: 5px;
+  height: 35px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.finCarrito span {
+  font-size: 24px;
+  font-weight: 700;
+  height: 30px;
+  width: 15.5vw;
+}
+
+
+footer{
+  text-align: center;
+}
+/* 
+table {
+  width: 100%;
+  margin: auto;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 10px;
+} */
+
+/* th {
+  text-align: start;
+  font-size: 13px;
+  font-weight: 800;
+  vertical-align: bottom;
+}
+
+th:nth-child(1){
+  width: 15%;
+}
+
+th:nth-child(2){
+  width: 25%;
+}
+
+th:nth-child(3), th:nth-child(4){
+  width: 10%;
+}
+
+th:nth-child(5), th:nth-child(6){
+    width: 30%;
+}
+
+tr {
+  table-layout: fixed;
+  height: 30px;
+}
+
+br {
+  border-bottom: 1px solid black;
+}
+
+td{
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 14px;
+  background-color: hsla(0, 2%, 32%, 0.15);
+}
+ */

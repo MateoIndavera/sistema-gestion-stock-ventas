@@ -3,9 +3,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Gestion de Stock y Ventas</title>
 </head>
 <body>
-  
+  <header>
+    <nav><ul>
+      <a href="#"><li><img src="./img/Icono_casa.png"></li></a>
+      <a href="#"><li>Stock</li></a>
+      <a href="#"><li>Productos</li></a>
+      <a href="#"><li>Ventas</li></a>
+      <a href="#"><li>Caja</li></a>
+    </ul></nav>
+  </header>
+  <main>
+    <div class="carrito">
+    
+          <div class="carritoColumnas">
+    <ul>
+      <li>#</li>
+      <li>Cod.</li>
+      <li>Producto</li>
+      <li>Cant.</li>
+      <li>En Stock</li>
+      <li>Precio unit.</li>
+      <li>Desc.</li>
+      <li>Precio Total</li>
+    </ul> 
+  </div>
+
+    <div class="detallesCarrito">
+
+      <div class="filaProducto">
+        <input type="text" placeholder="1">
+        <input type="text" placeholder="1234567890">
+        <input type="text" placeholder="Coca-cola 500ml">
+          <div class="cantidad">
+            <input type="text" placeholder="2">
+            <div class="btnsCantidad">
+              <button>-</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="10">
+        <input type="text" placeholder="2500">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="5000">
+    </div>
+    <hr>
+      <!-- <div class="filaProducto">
+        <input type="text" placeholder="2">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    <hr>
+          <div class="filaProducto">
+        <input type="text" placeholder="3">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    <hr>
+        <div class="filaProducto">
+        <input type="text" placeholder="4">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    <hr>
+          <div class="filaProducto">
+        <input type="text" placeholder="5">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    <hr>
+        <div class="filaProducto">
+        <input type="text" placeholder="6">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+      <hr>
+        <div class="filaProducto">
+        <input type="text" placeholder="6">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    <hr>
+        <div class="filaProducto">
+        <input type="text" placeholder="6">
+        <input type="text" placeholder="7544367352">
+        <input type="text" placeholder="Yerba Playadito">
+          <div class="cantidad">
+            <input type="text" placeholder="1">
+            <div class="btnsCantidad">
+              <button>+</button>
+              <button>-</button>
+            </div>
+          </div>
+        <input type="text" placeholder="7">
+        <input type="text" placeholder="4000">
+        <input type="text" placeholder="0%">
+        <input type="text" placeholder="4000">
+    </div>
+    -->
+    </div>
+  </div>
+      <div class="finCarrito">
+      <span>Total:</span>
+    </div>
+    <script defer src="renderer.js"></script>
+</main>
 </body>
 </html>
