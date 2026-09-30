@@ -76,7 +76,7 @@ const createWindow = () => {
         },
     });
 
-    win.loadFile("./src/index.html");
+    win.loadFile("./src/views/ventas.html");
 };
 
 app.whenReady().then(() => {

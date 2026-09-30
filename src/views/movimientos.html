@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/movimientos.css">
+  <link rel="stylesheet" href="../styles/bases.css">
+  <title>Movimientos</title>
+</head>
+<body>
+    <header>
+    <nav><ul>
+      <li><a href="#" id="icono"><img src="../img/Icono_casa.png"></a></li>
+      <li><a href="./ventas.html">Ventas</a></li>
+      <li><a href="#">Stock</a></li>
+      <li><a href="./movimientos.html">Movimientos</a></li>
+      <li><a href="#">Caja</a></li>
+    </ul></nav>
+  </header>
+  <main>
+    <div class="contMovimientos">
+      <div class="columnasMovimientos">
+      <ul>
+        <li>Cod_barra</li>
+        <li>Producto</li>
+        <li>Prec. Compra</li>
+        <li>Prec. Venta</li>
+        <li>Cant.</li>
+      </ul>
+      <label> Ordenar Por:
+        <select>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </label>
+      <div class="cajaBusqueda">
+        <input class="busqueda" type="text" placeholder="Buscar Producto">
+                <div class="iconoBusqueda">
+          <img src="../img/Icono Busqueda.png">
+        </div>
+      </div>
+      </div>
+        <div class="movimientos">
+          <div class="filaProducto">
+            <input type="text" placeholder="153253432">
+            <input type="text" placeholder="Baggio 120ml">
+            <input type="text" placeholder="1500">
+            <input type="text" placeholder="2500">
+            <input type="text" placeholder="7">
+          </div>
+          <div class="filaProducto">
+            <input type="text" placeholder="532412232">
+            <input type="text" placeholder="Galletitas Don satur">
+            <input type="text" placeholder="1000">
+            <input type="text" placeholder="1500">
+            <input type="text" placeholder="4">
+          </div>
+        </div>
+          <div class="finMovimiento">
+            <label>Tipo de Movimiento:
+              <select>
+                <option value="" selected disabled >Tipo</option>
+                <option value="ingreso">Ingreso</option>
+                <option value="salida">Salida</option>
+              </select>
+            </label>
+            <button>Confirmar Movimiento</button>
+          </div>
+  </main>
+
+  <script type="module" src="../modules/movimientos.js"></script>
+</body>
+</html>
