@@ -202,15 +202,62 @@ label {
   height: 30px;
 }
 
-.modal{
-  width: 300px;
-  height: 200px;
+.modalError{
+  width: 500px;
+  height: 270px;
   background-color: #e4e2e2;
-  border-radius: 15px;
+  border-radius: 5px;
   margin-bottom: 5%;
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.164);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
 }
 
+.contImgError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40%
+}
+.contImgError img {
+  width: 80px;
+}
 
+.modalError h2 {
+  font-size: 28px;
 
+}
+
+.modalError p {
+  height: 20px;
+  margin: 10px 0;
+}
+
+.modalError span {
+  font-weight: 900;
+}
+
+.modalError button {
+  margin: 10px 0;
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--color-secundario);
+  border-style: none;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in;
+}
+
+.modalError button:hover {
+  background-color: #0088CC;
+}
+
+.modalError button:active {
+  transform: scale(0.99);
+}
