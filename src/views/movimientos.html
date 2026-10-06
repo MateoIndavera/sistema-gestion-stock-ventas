@@ -21,12 +21,13 @@
     <div class="contMovimientos">
       <div class="columnasMovimientos">
       <ul>
-        <li>Cod_barra</li>
+        <li>Cod Barra</li>
         <li>Producto</li>
         <li>Prec. Compra</li>
         <li>Prec. Venta</li>
         <li>Cant.</li>
       </ul>
+      <div class="filtros">
       <label> Ordenar Por:
         <select>
           <option>1</option>
@@ -34,28 +35,17 @@
           <option>3</option>
         </select>
       </label>
-      <div class="cajaBusqueda">
+      <div class="cajaBusqueda"><label>
+
         <input class="busqueda" type="text" placeholder="Buscar Producto">
-                <div class="iconoBusqueda">
+        <div class="iconoBusqueda">
           <img src="../img/Icono Busqueda.png">
+        </label>
         </div>
       </div>
       </div>
+      </div>
         <div class="movimientos">
-          <div class="filaProducto">
-            <input type="text" placeholder="153253432">
-            <input type="text" placeholder="Baggio 120ml">
-            <input type="text" placeholder="1500">
-            <input type="text" placeholder="2500">
-            <input type="text" placeholder="7">
-          </div>
-          <div class="filaProducto">
-            <input type="text" placeholder="532412232">
-            <input type="text" placeholder="Galletitas Don satur">
-            <input type="text" placeholder="1000">
-            <input type="text" placeholder="1500">
-            <input type="text" placeholder="4">
-          </div>
         </div>
           <div class="finMovimiento">
             <label>Tipo de Movimiento:
@@ -65,7 +55,7 @@
                 <option value="salida">Salida</option>
               </select>
             </label>
-            <button>Confirmar Movimiento</button>
+            <button id="confirmMov">Confirmar Movimiento</button>
           </div>
   </main>
 

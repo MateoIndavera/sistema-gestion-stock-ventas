@@ -92,6 +92,7 @@ main {
 .filaProducto{
   display: flex;
   gap: 10px;
+  min-height: 45px;
   height: 45px;
   padding-bottom: 7px;
   margin: 5px 0 0 0;
@@ -108,4 +109,8 @@ main {
   outline: 2.5px solid #8baae28f;
   background-color: #abe2f34f;
   border-radius: 5px;
+}
+
+.filaProducto input::placeholder {
+  color: rgba(0, 0, 0, 0.15);
 }
