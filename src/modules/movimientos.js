@@ -6,9 +6,46 @@ const $btnConfirmMov = $("#confirmMov");
 
 let count = 0;
 
+//FUNCIONES
+
+const confirmarMovimiento = () => {
+    try {
+        let filas = $$(".filaProducto");
+        if (filas.length == 0) {
+            throw {
+                razon: "lista sin productos",
+                msgError: "No hay ningun producto cargado",
+            };
+        }
+
+        let productos = filas.map((fila) => {
+            const inputs = $$("[data-field]", fila);
+            return inputs.reduce((obj, input) => {
+                if (input.value == "") {
+                    throw {
+                        razon: "campo vacio",
+                        msgError: "No pueden haber campos vacios",
+                        filaError: fila.dataset.filaNumero,
+                        campo: input,
+                        campoInfoError: input.dataset.field,
+                    };
+                }
+
+                obj[input.dataset.field] = input.value;
+
+                return obj;
+            }, {});
+        });
+
+        console.log(productos);
+    } catch (e) {
+        console.log(e);
+        modalUiErrores(e);
+    }
+};
+
 const modalUiErrores = (objError) => {
     let $existeModal = $(".pantallaModal");
-
     if ($existeModal) {
         return;
     }
@@ -21,12 +58,28 @@ const modalUiErrores = (objError) => {
     modal.classList.add("modalError");
     pantallaModal.appendChild(modal);
 
-    modal.innerHTML = `
-      <div class="contImgError"><img src="../img/iconoError.png"></div>
-      <p><span>Error en el Producto: </span> ${objError.filaError}</p>
-      <p><span>En el Campo: </span>${objError.campoError}</p>
-      <button>Reintentar</button>
+    if (objError.razon == "campo vacio") {
+        modal.innerHTML = `
+    <div class="contImgError"><img src="../img/iconoError.png"></div>
+    <p><span>Error en el Producto Nº </span>${objError.filaError}</p>
+    <p><span>En el Campo: </span>${objError.campoInfoError}</p>
+    <p><span>Tipo: </span>${objError.msgError}</p>
+    <button class="btnReintentar">Reintentar</button>
     `;
+    } else if (objError.razon == "lista sin productos") {
+        modal.innerHTML = `
+        <div class="contImgError"><img src="../img/iconoError.png"></div>
+        <p><span>ERROR!!</span>
+        <p><span>Razon: </span>${objError.msgError}</p>
+        <button class="btnReintentar">Reintentar</button>
+        `;
+    }
+
+    const $btnReintentar = $(".btnReintentar");
+    $btnReintentar.addEventListener("click", (e) => {
+        pantallaModal.remove();
+        objError.campo.focus();
+    });
 };
 
 document.addEventListener("keydown", (e) => {
@@ -61,30 +114,11 @@ document.addEventListener("keydown", (e) => {
         return;
     }
 
-    try {
-        let productos = [];
-        let filas = $$(".filaProducto");
-        filas.map((fila) => {
-            const inputs = $$("[data-field]", fila);
+    confirmarMovimiento();
+});
 
-            productos = inputs.reduce((obj, input) => {
-                if (input.value == "") {
-                    throw {
-                        filaError: fila.dataset.filaNumero,
-                        campoError: input.dataset.field,
-                        razon: "Campo vacio",
-                    };
-                }
-                console.log(input);
-
-                obj[input.dataset.field] = input.value;
-
-                return obj;
-            }, {});
-        });
-    } catch (e) {
-        modalUiErrores(e);
-    }
+$btnConfirmMov.addEventListener("click", (e) => {
+    confirmarMovimiento();
 });
 
 // $body.addEventListener("click", (e) => {
