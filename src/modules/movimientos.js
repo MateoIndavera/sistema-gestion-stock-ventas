@@ -8,7 +8,9 @@ let count = 0;
 
 //FUNCIONES
 
-const confirmarMovimiento = () => {
+const autoCompletarProductos = async () => {};
+
+const confirmarMovimiento = async () => {
     try {
         let filas = $$(".filaProducto");
         if (filas.length == 0) {
@@ -37,13 +39,22 @@ const confirmarMovimiento = () => {
             }, {});
         });
 
-        console.log(productos);
+        let total = productos.reduce((acc, p) => {
+            return (acc += p.cantidad * p.precioCompra);
+        }, 0);
+
+        const movimiento = [productos, total];
+
+        console.log(movimiento);
+
+        const respuesta = await window.dbApi.guardarMovimiento(movimiento);
+        console.log(respuesta);
     } catch (e) {
         console.log(e);
         modalUiErrores(e);
     }
 };
-
+//Funcion que maneja la visualizacion de errores
 const modalUiErrores = (objError) => {
     let $existeModal = $(".pantallaModal");
     if ($existeModal) {
@@ -92,7 +103,7 @@ document.addEventListener("keydown", (e) => {
     filaProducto.dataset.filaNumero = count;
 
     filaProducto.innerHTML = `
-            <input type="text" data-field="cod barra" placeholder="1234567890">
+            <input type="text" data-field="codBarra" placeholder="1234567890">
             <input type="text" data-field="nombre" placeholder="Coca-cola 500ml">
             <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precioCompra" placeholder="1500">
             <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precioVenta" placeholder="3000">
@@ -113,7 +124,7 @@ document.addEventListener("keydown", (e) => {
     if (e.key != "Enter") {
         return;
     }
-
+    console.log(e.key);
     confirmarMovimiento();
 });
 
