@@ -126,9 +126,49 @@
   width: 10%
 }
 
-.filaProducto input:nth-child(2) {
+.filaProducto .contSugerencia {
   width: 25%;
   max-width: 25%;
+}
+
+.contSugerencia input:nth-child(1){
+  width: 100%;
+  height: 100%;
+}
+
+.resultadoSugerencia {
+  position:relative;
+  width: 100%;
+  top:5px;
+  margin-right: 5px;
+  z-index: 1;
+  background-color: rgba(109, 108, 108, 0.95);
+  border-radius: 5px;
+}
+
+
+.sugerencia {
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding-left: 3px;
+  font-weight: 400;
+  transition: background-color 0.1s ease;
+}
+
+.sugerencia:hover {
+  background-color: rgb(92, 91, 91);
+}
+
+.sugerencia:first-child{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.sugerencia:last-child{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .filaProducto input:nth-child(3) {

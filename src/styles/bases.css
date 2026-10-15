@@ -107,7 +107,8 @@ main {
 }
 
 .filaProducto input:focus {
-  outline: 2.5px solid #8baae28f;
+  border: 2.5px solid #8baae28f;
+  outline: 0;
   background-color: #abe2f34f;
   border-radius: 5px;
 }
