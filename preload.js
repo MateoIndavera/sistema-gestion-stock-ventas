@@ -9,7 +9,11 @@ contextBridge.exposeInMainWorld("dbApi", {
         return await ipcRenderer.invoke("guardarMovimiento", movimiento);
     },
 
-    pedirProductos: async (nombreProducto) => {
-        return await ipcRenderer.invoke("pedirProductos", nombreProducto);
+    pedirNombreProductos: async (nombreProducto) => {
+        return await ipcRenderer.invoke("pedirNombreProductos", nombreProducto);
+    },
+
+    pedirDatosProducto: async (idProducto) => {
+        return await ipcRenderer.invoke("pedirDatosProducto", idProducto);
     },
 });

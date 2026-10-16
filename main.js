@@ -78,15 +78,12 @@ const guardarMovimiento = db.transaction((datosMovimiento) => {
     );
     const resultadoMovimiento = stmtMovimiento.run("tipo", total);
     const idUltMovimiento = resultadoMovimiento.lastInsertRowid;
+    console.log(idUltMovimiento);
 
     const stmtDetalle = db.prepare(
         "INSERT INTO detalle_movimiento (mov_id, cantidad, precio_compra, precio_venta) VALUES (?,?,?,?)",
     );
     for (let p of productos) {
-        console.log(idUltMovimiento);
-        console.log(p.cantidad);
-        console.log(p.precioCompra);
-        console.log(p.precioVenta);
         stmtDetalle.run(
             idUltMovimiento,
             p.cantidad,
@@ -149,13 +146,17 @@ const testCargarProds = () => {
     }
 };
 
-const pedirProducto = async (nombreProducto) => {
-    const stmtPedirProducto = db.prepare(
-        "SELECT * FROM producto WHERE nombre = ?",
+const pedirDatosDeProductos = (
+    parametroDeBusqueda,
+    valorDeBusqueda,
+    datosRequeridos,
+) => {
+    const stmtPedirProductos = db.prepare(
+        `SELECT ${datosRequeridos} FROM producto WHERE ${parametroDeBusqueda} LIKE '${valorDeBusqueda}%' LIMIT 5`,
     );
 
-    const resultado = await stmtPedirProducto.get(nombreProducto);
-    console.log(resultado);
+    const resultado = stmtPedirProductos.all();
+    return resultado;
 };
 
 //Funcion que crea la ventana de vista
@@ -188,8 +189,27 @@ app.whenReady().then(() => {
     });
 
     //Logica para pedir producto, que ayuda a verificar si ya esta cargado o no
-    ipcMain.handle("pedirProducto", async (e, nombreProducto) => {
+    ipcMain.handle("pedirNombreProductos", async (e, nombreProducto) => {
         try {
+            if (nombreProducto != "") {
+                let productosSugeridos = pedirDatosDeProductos(
+                    "nombre",
+                    nombreProducto,
+                    "id, nombre",
+                );
+                return productosSugeridos;
+            }
+        } catch (e) {
+            console.log(e.message);
+        }
+    });
+
+    ipcMain.handle("pedirDatosProducto", (e, idProducto) => {
+        try {
+            if (idProducto) {
+                let producto = pedirDatosDeProductos("id", idProducto, "*");
+                return producto[0];
+            }
         } catch (e) {
             console.log(e.message);
         }
@@ -198,7 +218,7 @@ app.whenReady().then(() => {
     //Logica para recibir el movimiento, guardarlo y devolver un true
     ipcMain.handle("guardarMovimiento", async (e, datosMovimiento) => {
         try {
-            console.log(datosMovimiento);
+            console.log("Datos del movimiento:\n", datosMovimiento);
 
             guardarMovimiento(datosMovimiento);
 

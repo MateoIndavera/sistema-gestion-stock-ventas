@@ -4,8 +4,12 @@ const $body = $("body");
 const $movimientos = $(".contMovimientos .movimientos");
 const $btnConfirmMov = $("#confirmMov");
 const $btnCargaProds = $(".cargaProds");
+let inputProductosDinamico;
+let resultadoSugerencias = null;
 
-let count = 0;
+let timeSetOutId;
+
+let contadorFilas = 0;
 
 //FUNCIONES
 
@@ -14,34 +18,46 @@ let count = 0;
 const agregarFilaProducto = () => {
     const filaProducto = document.createElement("div");
     filaProducto.classList.add("filaProducto");
-    filaProducto.dataset.filaNumero = count;
+    filaProducto.dataset.filaNumero = contadorFilas;
 
     filaProducto.innerHTML = `
-            <input type="text" data-field="codBarra" placeholder="1234567890">
+            <input type="text" data-field="cod_barra" placeholder="1234567890">
             <div class="contSugerencia">
             <input type="text" data-field="nombre" placeholder="Coca-cola 500ml">
-            <div class="resultadoSugerencia">
-                <div class="sugerencia">Coca Cola 2.25L</div>
-                <div class="sugerencia">Arroz Gallo 1kg</div>
-                <div class="sugerencia">Aceite Natura 900ml</div>
             </div>
-            </div>
-            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precioCompra" placeholder="1500">
-            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precioVenta" placeholder="3000">
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precio_compra" placeholder="1500">
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="precio_venta" placeholder="3000">
             <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" data-field="cantidad" placeholder="2">
             <div class="acciones"></div>
 `;
 
     $movimientos.appendChild(filaProducto);
 
-    count++;
+    contadorFilas++;
 };
 
 //Completar prods al ir cargando un movimiento
 const autoCompletarProductos = async (input) => {
-    setTimeout(() => {
-        console.log("event\n", input.value, "\n"); // Dejaste aca
-    }, 300);
+    if (resultadoSugerencias != null) {
+        resultadoSugerencias.remove();
+    }
+
+    resultadoSugerencias = document.createElement("div");
+    resultadoSugerencias.classList.add("resultadoSugerencias");
+    input.parentElement.appendChild(resultadoSugerencias);
+
+    const arrProductos = await window.dbApi.pedirNombreProductos(input.value);
+
+    console.log(arrProductos);
+    if (arrProductos != undefined) {
+        for (const p of arrProductos) {
+            const sugerencia = document.createElement("div");
+            sugerencia.dataset.id = p.id;
+            sugerencia.classList.add("sugerencia");
+            sugerencia.innerHTML = `${p.nombre}`;
+            resultadoSugerencias.appendChild(sugerencia);
+        }
+    }
 };
 
 //Confirm Movimiento
@@ -69,13 +85,12 @@ const confirmarMovimiento = async () => {
                 }
 
                 obj[input.dataset.field] = input.value;
-
                 return obj;
             }, {});
         });
 
         let total = productos.reduce((acc, p) => {
-            return (acc += p.cantidad * p.precioCompra);
+            return (acc += p.cantidad * p.precio_compra);
         }, 0);
 
         const movimiento = [productos, total];
@@ -146,9 +161,41 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+document.addEventListener("click", (e) => {
+    if (
+        inputProductosDinamico &&
+        document.activeElement !== inputProductosDinamico // Verifica si el input existe y si perdio foco, Al perder foco el input se borran el resultado
+    ) {
+        resultadoSugerencias.remove();
+    }
+});
+
+//Escucha los inputs de movimiento, Si es el input de nombre, lo toma y lo guarda en inputProductosDinamico
 $movimientos.addEventListener("input", (e) => {
     if (e.target.dataset.field == "nombre") {
-        autoCompletarProductos(e.target);
+        inputProductosDinamico = e.target;
+        clearTimeout(timeSetOutId);
+
+        timeSetOutId = setTimeout(() => {
+            autoCompletarProductos(e.target);
+        }, 200);
+    }
+});
+
+$movimientos.addEventListener("click", async (e) => {
+    const sugerenciaElegida = e.target.closest(".sugerencia");
+    if (!sugerenciaElegida) {
+        return;
+    }
+
+    const idProducto = sugerenciaElegida.dataset.id;
+    const producto = await window.dbApi.pedirDatosProducto(idProducto);
+    console.log(producto);
+    for (const [campo, valor] of Object.entries(producto)) {
+        const input = $(`[data-field=${campo}]`);
+        if (input) {
+            input.value = valor;
+        }
     }
 });
 

@@ -136,7 +136,7 @@
   height: 100%;
 }
 
-.resultadoSugerencia {
+.resultadoSugerencias {
   position:relative;
   width: 100%;
   top:5px;
@@ -299,4 +299,8 @@ label {
 
 .modalError button:active {
   transform: scale(0.99);
+}
+
+.oculto {
+  display: none;
 }
