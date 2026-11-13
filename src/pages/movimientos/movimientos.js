@@ -1,4 +1,4 @@
-import { $, $$ } from "../utils/dom.js";
+import { $, $$ } from "../../utils/dom.js";
 
 const $body = $("body");
 const $movimientos = $(".contMovimientos .movimientos");
@@ -124,7 +124,7 @@ const modalUiErrores = (objError) => {
 
     if (objError.razon == "campo vacio") {
         modal.innerHTML = `
-    <div class="contImgError"><img src="../img/iconoError.png"></div>
+    <div class="contImgError"><img src="../../../src/img/IconoError.png"></div>
     <p><span>Error en el Producto Nº </span>${objError.filaError}</p>
     <p><span>En el Campo: </span>${objError.campoInfoError}</p>
     <p><span>Tipo: </span>${objError.msgError}</p>
@@ -132,7 +132,7 @@ const modalUiErrores = (objError) => {
     `;
     } else if (objError.razon == "lista sin productos") {
         modal.innerHTML = `
-        <div class="contImgError"><img src="../img/iconoError.png"></div>
+        <div class="contImgError"><img src="../../img/iconoError.png.png"></div>
         <p><span>ERROR!!</span>
         <p><span>Razon: </span>${objError.msgError}</p>
         <button class="btnReintentar">Reintentar</button>

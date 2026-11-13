@@ -2,7 +2,10 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const Database = require("better-sqlite3");
 const dbPath = path.join(app.getPath("userData"), "Database.db");
-const { supabase } = require("./backend/supabaseClient.js");
+const { supabase } = require("../src/backend/supabaseClient.js");
+
+let win;
+let user = {};
 
 const db = new Database(dbPath);
 console.log(`Data base creada en ${dbPath}`);
@@ -162,20 +165,23 @@ const pedirDatosDeProductos = (
 
 //Funcion que crea la ventana de vista
 const createWindow = () => {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, "/preload.js"),
+            preload: path.join(__dirname, "./preload.js"),
         },
     });
 
-    win.loadFile("./src/views/movimientos.html");
+    win.loadFile(path.join(__dirname, "pages", "login", "login.html"));
 };
-
 //Probar conexion Bd
 const probarConexionSupabase = async () => {
-    const { data, error } = await supabase.from("venta").select("*").limit(1);
+    const { data, error } = await supabase
+        .from("comercio")
+        .select("*")
+        .limit(1);
+
     if (error) {
         console.log("Error database:\n", error);
     } else {
@@ -183,12 +189,49 @@ const probarConexionSupabase = async () => {
     }
 };
 
+const verificarCredenciales = async (email, password) => {
+    try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+        if (error) {
+            throw new Error(error);
+        }
+        user = { userId: data.user.id };
+        return { ok: true };
+    } catch (e) {
+        return { ok: false, message: e.message };
+    }
+};
+
 //Funciones para cuando este lista la app
 
 app.whenReady().then(() => {
     createWindow();
-    probarConexionSupabase();
     let count = 0; //Contador parte de la logica para eliminar movimientos a las 3 inserciones
+
+    ipcMain.handle("loginUser", async (e, datosLogin) => {
+        try {
+            const respuesta = await verificarCredenciales(
+                datosLogin.email,
+                datosLogin.password,
+            );
+            if (respuesta.ok) {
+                win.loadFile(
+                    path.join(
+                        __dirname,
+                        "pages",
+                        "movimientos",
+                        "movimientos.html",
+                    ),
+                );
+            }
+            return respuesta;
+        } catch (e) {
+            console.log(e.message);
+        }
+    });
 
     ipcMain.on("cargarProdsPrueba", () => {
         const tablaProds = db.prepare("SELECT * FROM producto");

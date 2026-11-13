@@ -1,19 +1,102 @@
 /* Css de elementos en comun de cada pagina */
 :root {
-  --color-principal : #1F4999;
+  /* --color-principal : #1F4999;
   --color-secundario: #0046CC;
   --color-claro: #4f84f7;
   --color-hoverBorderInput: #8baae28f;
   --color-inputBackground: #abe2f34f;
   --color-outlineFocus: #8baae28f;
   --color-fuenteNegra: #292C33;
-  --color-body: #d3d2d265;
+  --color-body: #d3d2d265; */
+
+  /*  COLORES PRINCIPALES  */
+
+    --color-primario: #173F63;
+    --color-primario-hover: #24577D;
+    --color-primario-suave: #EAF1F7;
+
+
+    /* FONDOS Y SUPERFICIES */
+
+    --color-fondo: #F5F7FA;
+    --color-superficie: #FFFFFF;
+    --color-superficie-alternativa: #EDF0F4;
+
+
+    /*  TEXTOS  */
+
+    --color-texto: #172B3A;
+    --color-texto-secundario: #667788;
+    --color-texto-deshabilitado: #9AA6B2;
+
+
+    /*  BORDES  */
+
+    --color-borde: #DCE3EA;
+    --color-borde-hover: #B8C5D1;
+
+
+    /*  ESTADOS  */
+
+    --color-exito: #168653;
+    --color-exito-fondo: #E8F5EE;
+
+    --color-advertencia: #C58A20;
+    --color-advertencia-fondo: #FFF5DF;
+
+    --color-error: #D64545;
+    --color-error-fondo: #FCEBEC;
+
+    --color-informacion: #3478B8;
+    --color-informacion-fondo: #EAF2FA;
+
+
+    /*  TIPOGRAFÍA  */
+
+    --fuente-principal: 'Inter', sans-serif;
+
+    --texto-chico: 12px;
+    --texto-normal: 14px;
+    --texto-grande: 16px;
+
+    --titulo-seccion: 18px;
+    --titulo-pagina: 24px;
+
+
+    /*  ESPACIADOS  */
+
+    --espacio-1: 4px;
+    --espacio-2: 8px;
+    --espacio-3: 12px;
+    --espacio-4: 16px;
+    --espacio-6: 24px;
+    --espacio-8: 32px;
+
+
+    /*  BORDES REDONDEADOS  */
+
+    --radio-chico: 6px;
+    --radio-medio: 10px;
+    --radio-grande: 16px;
+    --radio-completo: 999px;
+
+
+    /*  SOMBRAS  */
+
+    --sombra-suave: 0 2px 8px rgba(23, 43, 58, 0.05);
+    --sombra-tarjeta: 0 4px 16px rgba(23, 43, 58, 0.06);
+
+
+    /*  TRANSICIONES  */
+
+    --transicion-rapida: 150ms ease;
+    --transicion-normal: 200ms ease;
 }
 
 * {
   box-sizing: border-box;
 }
-
+/* 
 body {
   margin: 0;
   height: 100vh;
@@ -115,4 +198,4 @@ main {
 
 .filaProducto input::placeholder {
   color: rgba(0, 0, 0, 0.15);
-}
+} */

@@ -1,6 +1,10 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("dbApi", {
+    loginUser: async (datosLogin) => {
+        return await ipcRenderer.invoke("loginUser", datosLogin);
+    },
+
     cargar3Prods: () => {
         ipcRenderer.send("cargarProdsPrueba");
     },
