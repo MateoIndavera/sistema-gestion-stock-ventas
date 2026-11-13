@@ -242,7 +242,7 @@ label {
   height: 30px;
 }
 
-.modalError{
+.modal{
   width: 500px;
   height: 270px;
   background-color: #e4e2e2;
@@ -266,20 +266,20 @@ label {
   width: 80px;
 }
 
-.modalError h2 {
+.modal h2 {
   font-size: 28px;
 }
 
-.modalError p {
+.modal p {
   height: 20px;
   margin: 10px 0;
 }
 
-.modalError span {
+.modal span {
   font-weight: 900;
 }
 
-.modalError button {
+.modal button {
   margin: 10px 0;
   width: 100px;
   height: 40px;
@@ -293,11 +293,11 @@ label {
   transition: background-color 0.1s ease-in;
 }
 
-.modalError button:hover {
+.modal button:hover {
   background-color: #0088CC;
 }
 
-.modalError button:active {
+.modal button:active {
   transform: scale(0.99);
 }
 

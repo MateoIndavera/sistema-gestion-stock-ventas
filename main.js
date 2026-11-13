@@ -1,8 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const Database = require("better-sqlite3");
-
 const dbPath = path.join(app.getPath("userData"), "Database.db");
+const { supabase } = require("./backend/supabaseClient.js");
 
 const db = new Database(dbPath);
 console.log(`Data base creada en ${dbPath}`);
@@ -146,6 +146,7 @@ const testCargarProds = () => {
     }
 };
 
+//Pedir nombre de productos Sugerencia de buscado
 const pedirDatosDeProductos = (
     parametroDeBusqueda,
     valorDeBusqueda,
@@ -172,11 +173,21 @@ const createWindow = () => {
     win.loadFile("./src/views/movimientos.html");
 };
 
+//Probar conexion Bd
+const probarConexionSupabase = async () => {
+    const { data, error } = await supabase.from("venta").select("*").limit(1);
+    if (error) {
+        console.log("Error database:\n", error);
+    } else {
+        console.log(data);
+    }
+};
+
 //Funciones para cuando este lista la app
 
 app.whenReady().then(() => {
     createWindow();
-
+    probarConexionSupabase();
     let count = 0; //Contador parte de la logica para eliminar movimientos a las 3 inserciones
 
     ipcMain.on("cargarProdsPrueba", () => {

@@ -98,6 +98,9 @@ const confirmarMovimiento = async () => {
         console.log(movimiento);
 
         const respuesta = await window.dbApi.guardarMovimiento(movimiento);
+        if (respuesta) {
+            modalUiConfirmacion();
+        }
         console.log(respuesta);
     } catch (e) {
         console.log(e);
@@ -116,7 +119,7 @@ const modalUiErrores = (objError) => {
     $body.appendChild(pantallaModal);
 
     const modal = document.createElement("div");
-    modal.classList.add("modalError");
+    modal.classList.add("modal");
     pantallaModal.appendChild(modal);
 
     if (objError.razon == "campo vacio") {
@@ -140,6 +143,34 @@ const modalUiErrores = (objError) => {
     $btnReintentar.addEventListener("click", (e) => {
         pantallaModal.remove();
         objError.campo.focus();
+    });
+};
+
+const modalUiConfirmacion = () => {
+    let $existeModal = $(".pantallaModal");
+    if ($existeModal) {
+        return;
+    }
+
+    const pantallaModal = document.createElement("div");
+    pantallaModal.classList.add("pantallaModal");
+    $body.appendChild(pantallaModal);
+
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    pantallaModal.appendChild(modal);
+
+    modal.innerHTML = `
+    <div class="contImgError"><img src="../img/iconoCheck.png"></div>
+    <p><span>Exito!!!</p>
+    <p><span>El movimiento fue registrado correctamente</p>
+    <button class="btnCerrar">Cerrar</button>
+    `;
+
+    const $btnCerrar = $(".btnCerrar");
+    $btnCerrar.addEventListener("click", (e) => {
+        pantallaModal.remove();
+        $movimientos.children.remove();
     });
 };
 
@@ -187,12 +218,12 @@ $movimientos.addEventListener("click", async (e) => {
     if (!sugerenciaElegida) {
         return;
     }
+    const filaProducto = sugerenciaElegida.closest(".filaProducto");
 
     const idProducto = sugerenciaElegida.dataset.id;
     const producto = await window.dbApi.pedirDatosProducto(idProducto);
-    console.log(producto);
     for (const [campo, valor] of Object.entries(producto)) {
-        const input = $(`[data-field=${campo}]`);
+        const input = $(`[data-field=${campo}]`, filaProducto);
         if (input) {
             input.value = valor;
         }
