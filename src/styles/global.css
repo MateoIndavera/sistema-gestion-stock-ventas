@@ -13,6 +13,7 @@
 
     --color-primario: #173F63;
     --color-primario-hover: #24577D;
+    --color-primario-hover-suave: #17639c;
     --color-primario-suave: #EAF1F7;
 
 
@@ -26,6 +27,7 @@
     /*  TEXTOS  */
 
     --color-texto: #172B3A;
+    --color-texto-blanco: #FFF;
     --color-texto-secundario: #667788;
     --color-texto-deshabilitado: #9AA6B2;
 
@@ -85,6 +87,8 @@
 
     --sombra-suave: 0 2px 8px rgba(23, 43, 58, 0.05);
     --sombra-tarjeta: 0 4px 16px rgba(23, 43, 58, 0.06);
+    --sombra-header: 0 2px 14px rgba(23, 43, 58, 0.20);
+    --sombra-sidebar: 2px 0 10px rgba(23, 43, 58, 0.08);
 
 
     /*  TRANSICIONES  */
@@ -96,106 +100,8 @@
 * {
   box-sizing: border-box;
 }
-/* 
-body {
-  margin: 0;
-  height: 100vh;
-  background-color: var(--color-body);
-  color: var(--color-fuenteNegra);
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 0 5px;
-  display: flex;
-  flex-direction: column;
-  font-variant-numeric: tabular-nums;
+
+.user-navegando {
+  background-color: var(--color-primario-hover);
+  color: rgb(255, 247, 247);
 }
-
-header{
-  height: 50px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
-nav{
-  background-color: var(--color-principal);
-  width: 100%;
-  color: white;
-}
-
-
-nav ul {
-  display: flex;
-  align-items: center;
-  min-height: 45px;
-  padding: 0 3px;
-  gap: 12px;
-  margin: 0;
-  list-style-type: none;
-}
-
-
-a {
-  padding: 7px;
-  font-size: 18px;
-  text-decoration: none;
-  color: white;
-  font-weight: 800;
-  transition: border-top 0.1s ease;
-}
-
-#icono {
-  padding: 15px 3px 0 2px;
-}
-
-nav img {
-  width: 35px;
-}
-
-nav a:hover {
-  border-top: 2px solid var(--color-hoverBorderInput);
-  background: var(--color-inputBackground);
-  border-radius: 5px;
-}
-
-main {
-  flex: 3;
-}
-
-.pantallaModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color:rgba(0, 0, 0, 0.300);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.filaProducto{
-  display: flex;
-  gap: 10px;
-  min-height: 45px;
-  height: 45px;
-  padding-bottom: 7px;
-  margin: 5px 0 0 0;
-  border-bottom: 1px solid black;
-}
-
-.filaProducto input {
-  border-radius: 5px;
-  border: 0;
-  background-color: #9c9b9a2a;
-}
-
-.filaProducto input:focus {
-  border: 2.5px solid #8baae28f;
-  outline: 0;
-  background-color: #abe2f34f;
-  border-radius: 5px;
-}
-
-.filaProducto input::placeholder {
-  color: rgba(0, 0, 0, 0.15);
-} */
