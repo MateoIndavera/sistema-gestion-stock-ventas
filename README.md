@@ -26,7 +26,7 @@ Aplicación de escritorio para la gestión de kioscos y pequeños comercios: ven
 ## Arquitectura
 
 > [!IMPORTANT]
-> El detalle completo de las decisiones técnicas está documentado en [`DECISIONES.md`](./DECISIONES.md).
+> El detalle completo de las decisiones técnicas está documentado en [`decisiones.docx`](./decisiones.docx).
 
 ### Persistencia: de SQLite a Supabase
 
